@@ -20,8 +20,7 @@ def load_graph_from_file(path: str):
     return graph
 
 
-def plot_graph(graph: list):
-    print(graph)
+def get_nx_graph(graph: list):
     G = nx.from_numpy_array(np.array(graph), parallel_edges=False)
 
     # Plot it
@@ -70,6 +69,7 @@ def find_mst_prim(graph: list):
                             print(a, b)
         print(f"Edge {no_edge}: ({a}, {b}) cost: {minimum}")
         mst[a][b] = minimum
+        mst[b][a] = minimum
 
         node_selected[b] = True
         no_edge += 1
