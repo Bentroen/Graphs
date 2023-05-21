@@ -81,15 +81,25 @@ def find_mst_prim(graph: AdjacencyMatrix):
         a = 0
         b = 0
         for m in range(N):
+            print(f"Verificando nó {m}")
             if node_selected[m]:
+                print(f"\tNó {m} já selecionado")
                 for n in range(N):
+                    print(f"\t\tVerificando aresta ({m}, {n})")
                     if (not node_selected[n]) and graph[m][n]:
+                        print(f"\t\t\tNó {n} não selecionado e há aresta")
                         # Not in selected edges and there is an edge
                         if minimum > graph[m][n]:
                             minimum = graph[m][n]
                             a = m
                             b = n
-        print(f"Edge {no_edge}: ({a}, {b}) cost: {minimum}")
+                            print(
+                                f"\t\t\t\tAtualizando aresta: ({a}, {b}), custo: {minimum}"
+                            )
+
+        print("-" * 40)
+        print(f"Adicionando aresta {no_edge}: ({a}, {b}), custo: {minimum}")
+        print("-" * 40)
         mst[a][b] = minimum
         mst[b][a] = minimum
 
