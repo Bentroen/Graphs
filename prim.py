@@ -5,6 +5,9 @@ import numpy as np
 INPUT_PATH = "prim.txt"
 
 
+AdjacencyMatrix = list[list[int]]
+
+
 def load_graph_from_file(path: str):
     """
     Returns a graph from a text file containing an adjacency matrix.
@@ -20,12 +23,12 @@ def load_graph_from_file(path: str):
     return graph
 
 
-def get_nx_graph(graph: list):
+def get_nx_graph(graph: AdjacencyMatrix):
     G = nx.from_numpy_array(np.array(graph), parallel_edges=False)
     return G
 
 
-def arrange_graph(graph: nx.graph):
+def arrange_graph(graph: nx.Graph):
     pos = nx.spring_layout(graph)
     return pos
 
@@ -41,7 +44,7 @@ def plot_graph(graph: nx.Graph, pos: dict[int, tuple[int, int]] = None):
     return graph
 
 
-def plot_side_by_side(graph1: list, graph2: list):
+def plot_side_by_side(graph1: AdjacencyMatrix, graph2: AdjacencyMatrix):
     plt.subplot(1, 2, 1)
     plt.title("Graph")
     G1 = get_nx_graph(graph1)
@@ -57,7 +60,7 @@ def plot_side_by_side(graph1: list, graph2: list):
     plt.show()
 
 
-def find_mst_prim(graph: list):
+def find_mst_prim(graph: AdjacencyMatrix):
     """
     Returns the minimum spanning tree of the given graph using Prim's algorithm.
     """
