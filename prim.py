@@ -14,7 +14,7 @@ def load_graph_from_file(path: str):
     Each line of the file contains a row of the adjacency matrix,
     with each entry separated by any number of spaces.
     """
-    with open("prim.txt", "r") as f:
+    with open(path, "r") as f:
         graph = [
             [int(x) for x in line.split()]
             for line in f.readlines()
